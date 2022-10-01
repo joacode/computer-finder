@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.computerFinder.computers.ComputersMapper">
+
+    <resultMap id="computers" type="Computer" autoMapping="true" />
+    <select id="find" resultMap="computers">
+        SELECT * FROM computers
+    </select>
+
+    <select id="findById" resultMap="computers">
+        SELECT * FROM computers WHERE id = @{id}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO computers (model_name, brand, display_resolution, display_size, cpu, gpu, ram, expandable_ram, base_storage, expandable_storage, is_ssd)
+        VALUES(@{modelName},@{brand},@{displayResolution},@{displaySize},@{cpu},@{gpu},@{ram},@{expandableRam},@{baseStorage},@{expandableStorage},@{isSsd})
+    </insert>
+
+    <update id="update">
+        UPDATE computers
+        SET
+            model_name = COALESCE(@{params.modelName}, model_name),
+            brand = COALESCE(@{params.brand}, brand),
+            display_resolution = COALESCE(@{params.displayResolution}, display_resolution),
+            display_size = COALESCE(@{params.displaySize}, display_size),
+            cpu = COALESCE(@{params.cpu}, cpu),
+            gpu = COALESCE(@{params.gpu}, gpu),
+            ram = COALESCE(@{params.ram}, ram),
+            expandable_ram = COALESCE(@{params.expandableRam}, expandable_ram),
+            base_storage = COALESCE(@{params.baseStorage}, base_storage),
+            expandable_storage = COALESCE(@{params.expandableStorage}, expandable_storage),
+            is_ssd = COALESCE(@{params.isSsd}, is_ssd)
+        WHERE id = @{id}
+    </update>
+</mapper>

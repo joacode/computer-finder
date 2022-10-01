@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="defaultScriptingLanguage" value="velocity" />
+    </settings>
+    <typeAliases>
+        <typeAlias alias="velocity"
+                   type="org.mybatis.scripting.velocity.VelocityLanguageDriver" />
+        <package name="com.computerFinder" />
+    </typeAliases>
+    <mappers>
+        <mapper resource="mappers/imports/ComputersMapper.xml" />
+    </mappers>
+</configuration>
